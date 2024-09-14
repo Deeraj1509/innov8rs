@@ -95,7 +95,6 @@ def handle_text_input():
     display_images(gesture_images)
 
 def transcribe_live_audio():
-    """Capture and transcribe live audio from the microphone."""
     with sr.Microphone() as source:
         print("Adjusting for ambient noise... Please wait.")
         r.adjust_for_ambient_noise(source) 
@@ -120,6 +119,9 @@ def handle_voice_input():
         var.set(recognized_text) 
         gesture_images = get_gesture_images(recognized_text)
         display_images(gesture_images)
+
+
+
 
 label = ctk.CTkLabel(root, text="Enter the text or use voice input:",text_color="black")
 label.pack(padx=10, pady=10)
@@ -152,6 +154,57 @@ button_voice = ctk.CTkButton(
     command=handle_voice_input
 )
 button_voice.pack(padx=20, pady=20)
+
+
+
+def display_common_word_gesture(word):
+  
+    gesture_images = [COMMON_WORDS_GESTURES[word]]
+    display_images(gesture_images)
+
+button_hello = ctk.CTkButton(
+    master=root,text="Hello", width=200,height=50,fg_color="#00C853", text_color="white",hover_color="#00E676",
+    corner_radius=8,
+    command=lambda: display_common_word_gesture("hello") 
+)
+button_hello.pack(padx=20, pady=10)
+
+button_thank_you = ctk.CTkButton(
+    master=root,text="Thank You",width=200,height=50,
+    fg_color="#00C853",  
+    text_color="white",hover_color="#00E676",
+    corner_radius=8, command=lambda: display_common_word_gesture("thank you") 
+)
+button_thank_you.pack(padx=20, pady=10)
+
+button_yes = ctk.CTkButton(
+    master=root,
+    text="Yes", width=200,
+    height=50, fg_color="#00C853",  
+    text_color="white",hover_color="#00E676",
+    corner_radius=8,
+    command=lambda: display_common_word_gesture("yes") 
+)
+button_yes.pack(padx=20, pady=10)
+
+button_no = ctk.CTkButton(
+    master=root,
+    text="No",width=200,
+    height=50,fg_color="#00C853",  
+    text_color="white",
+    hover_color="#00E676",
+    corner_radius=8,command=lambda: display_common_word_gesture("no")  
+)
+button_no.pack(padx=20, pady=10)
+
+button_please = ctk.CTkButton(
+    master=root,
+    text="Please",width=200,
+    height=50,fg_color="#00C853",  
+    text_color="white",hover_color="#00E676",
+    corner_radius=8,command=lambda: display_common_word_gesture("please")  
+)
+button_please.pack(padx=20, pady=10)
 
 if __name__ == "__main__":
     root.mainloop()
